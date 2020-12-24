@@ -1,0 +1,4 @@
+pyobjc
+rumps
+
+py2app
