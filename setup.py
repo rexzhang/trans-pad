@@ -9,7 +9,13 @@ from setuptools import setup
 
 APP = ['trans_pad.py']
 DATA_FILES = []
-OPTIONS = {}
+OPTIONS = {
+    'argv_emulation': True,
+    'plist': {
+        'LSUIElement': True,
+    },
+    'packages': ['rumps'],
+}
 
 setup(
     app=APP,
