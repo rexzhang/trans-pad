@@ -1,4 +1,6 @@
 pyobjc
 rumps
 
+googletrans==4.0.0rc1
+
 py2app

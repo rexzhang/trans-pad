@@ -7,12 +7,26 @@ Usage:
 
 from setuptools import setup
 
-APP = ['trans_pad.py']
+APP = ['TransPad.py']
 DATA_FILES = []
 OPTIONS = {
     'argv_emulation': True,
     'plist': {
+        'CFBundleIdentifier': 'com.rexzhang.TransPad',
         'LSUIElement': True,
+        'NSServices': [
+            {
+                'NSMenuItem': {
+                    'default': 'TransPad: Translate',
+                    'Chinese': 'TransPad: 翻译文本',
+                    'English': 'TransPad: Translate Text',
+                },
+                'NSMessage': 'translateTextService',
+                'NSPortName': 'TransPadService',
+                'NSReturnTypes': ['NSStringPboardType'],
+                'NSSendTypes': ['NSStringPboardType'],
+            },
+        ],
     },
     'packages': ['rumps'],
 }
