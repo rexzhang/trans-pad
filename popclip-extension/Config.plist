@@ -7,11 +7,11 @@
         <array>
             <dict>
                 <key>Image File</key>
-                <string>translate.png</string>
+                <string>icon.png</string>
                 <key>Service Name</key>
                 <string>TransPad: Translate</string>
                 <key>Title</key>
-                <string>TransPad: Translate</string>
+                <string>TransPad: Translate Text</string>
             </dict>
         </array>
         <key>Extension Description</key>

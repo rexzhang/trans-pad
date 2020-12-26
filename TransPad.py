@@ -24,7 +24,7 @@ class TransPadApp:
             callback=lambda _: self.test()
         )
 
-        self.app = rumps.App('TransPad', 'T')
+        self.app = rumps.App('TransPad', icon='icon.icns')
         # self.app._nsapp.setServicesProvider(test)
         # NSApplication.sharedApplication().setServicesProvider_(test)
         serviceProvider = ServiceTest.alloc().init()

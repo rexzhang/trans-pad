@@ -10,6 +10,7 @@ from setuptools import setup
 APP = ['TransPad.py']
 DATA_FILES = []
 OPTIONS = {
+    'iconfile': 'icon.icns',
     'argv_emulation': True,
     'plist': {
         'CFBundleIdentifier': 'com.rexzhang.TransPad',
