@@ -1,6 +1,7 @@
+from AppKit import (
+    NSApplication, NSRegisterServicesProvider, NSApp
+)
 import rumps
-from Cocoa import NSRegisterServicesProvider
-from AppKit import NSApplication, NSRegisterServicesProvider, NSApp
 
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad

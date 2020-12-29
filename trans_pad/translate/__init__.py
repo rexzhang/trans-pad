@@ -15,8 +15,8 @@ CHANNEL_MAP = {
 
 
 class TranslateText:
-    _channel = Channel.MacOSServices
-    # _channel = Channel.GoogleAJAX
+    # _channel = Channel.MacOSServices
+    _channel = Channel.GoogleAJAX
     _translate = None
 
     def __init__(self):

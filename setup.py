@@ -10,8 +10,9 @@ from setuptools import setup
 APP = ['TransPad.py']
 DATA_FILES = []
 OPTIONS = {
-    'iconfile': 'icon.icns',
     'argv_emulation': True,
+
+    'iconfile': 'icon.icns',
     'plist': {
         'CFBundleIdentifier': 'com.rexzhang.TransPad',
         'LSUIElement': True,
@@ -29,7 +30,13 @@ OPTIONS = {
             },
         ],
     },
-    'packages': ['rumps'],
+    # 'arch': 'universal2',
+
+    'packages': [
+        'rumps',
+
+        'googletrans',
+    ],
 }
 
 setup(
