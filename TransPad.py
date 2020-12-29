@@ -3,7 +3,9 @@ from AppKit import (
 )
 import rumps
 
-from trans_pad.config import config, TranslateChannel
+from trans_pad.constantes import APP_NAME
+from trans_pad.config import config
+from trans_pad.constantes import TranslateChannel
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad
 from trans_pad.service import TransPadService
@@ -29,14 +31,14 @@ class TransPadApp:
             ),
             rumps.separator,
 
-            rumps.MenuItem('Translation provider: macOS Dictionary/Google'),
+            rumps.MenuItem('Translation provider: macOS Dictionary or Google'),
             self.menu_translate_channel_google_ajax,
 
             rumps.separator,
         ]
 
         self.app = rumps.App(
-            'TransPad', icon='icon.icns', template=True, menu=menu
+            APP_NAME, icon='icon.icns', template=True, menu=menu
         )
 
         # self.app._nsapp.setServicesProvider(test)
@@ -53,6 +55,7 @@ class TransPadApp:
         else:
             config.Common.translate_channel = TranslateChannel.MacOSServices
 
+        config.dump()
         translate_text.set_channel()
         return
 

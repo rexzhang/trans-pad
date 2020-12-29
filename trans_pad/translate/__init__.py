@@ -1,4 +1,5 @@
-from trans_pad.config import config, TranslateChannel
+from trans_pad.config import config
+from trans_pad.constantes import TranslateChannel
 from trans_pad.translate.channel_macos_services import (
     TranslateChannelMacOSServices
 )

@@ -1,15 +1,13 @@
-from enum import IntEnum
+import os.path
 
 from tree_struct_config import (
     Root,
     Branch,
 )
 from tree_struct_config.exceptiones import ConfigFileException
+from rumps import application_support
 
-
-class TranslateChannel(IntEnum):
-    MacOSServices = 1
-    GoogleAJAX = 2
+from trans_pad.constantes import APP_NAME, TranslateChannel
 
 
 class Config(Root):
@@ -20,9 +18,11 @@ class Config(Root):
         service_url = 'translate.google.cn'
 
 
-config = Config(file='')
+config = Config(
+    file=os.path.join(application_support(APP_NAME), 'config.json')
+)
 try:
     config.load()
 
-except ConfigFileException:
+except (ConfigFileException, TypeError):
     pass

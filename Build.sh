@@ -1,4 +1,5 @@
-rm -rf build dist
+rm -rf .eggs build dist
+pip install -U -r requirements.txt
 python setup.py py2app
 
 python build.py
