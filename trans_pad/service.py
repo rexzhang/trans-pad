@@ -14,6 +14,7 @@ import objc
 from objc import typedSelector
 import rumps
 
+from trans_pad.config import config
 from trans_pad.translate import translate_text
 
 SERVICE_SELECTOR = b'v@:@@o^@'
@@ -45,6 +46,7 @@ class TransPadService(NSObject):
                 ))
 
             new_string = translate_text.translate(pboard_string)
+            # rumps.alert(str(config.Common.translate_channel))
             rumps.alert(new_string)
 
             types = [NSStringPboardType]

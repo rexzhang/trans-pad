@@ -3,4 +3,6 @@ pyobjc-framework-Cocoa
 pyobjc-framework-CoreServices
 pyobjc-framework-WebKit
 
+TreeStructConfig
+
 googletrans==4.0.0rc1

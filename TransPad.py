@@ -3,6 +3,7 @@ from AppKit import (
 )
 import rumps
 
+from trans_pad.config import config, TranslateChannel
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad
 from trans_pad.service import TransPadService
@@ -12,24 +13,60 @@ class TransPadApp:
     result_pad = None
 
     def __init__(self):
-        self.menu_test = rumps.MenuItem(
-            title='test',
-            callback=lambda _: self.test()
+        self.menu_translate_channel_google_ajax = rumps.MenuItem(
+            title='from Google AJAX',
+            callback=lambda sender: self.toggle_translate_channel(sender)
+        )
+        if config.Common.translate_channel == TranslateChannel.GoogleAJAX:
+            self.menu_translate_channel_google_ajax.state = True
+        else:
+            self.menu_translate_channel_google_ajax.state = False
+
+        menu = [
+            rumps.MenuItem(
+                title='About TransPad',
+                callback=lambda _: self.window_about(),
+            ),
+            rumps.separator,
+
+            rumps.MenuItem('Translation provider: macOS Dictionary/Google'),
+            self.menu_translate_channel_google_ajax,
+
+            rumps.separator,
+        ]
+
+        self.app = rumps.App(
+            'TransPad', icon='icon.icns', template=True, menu=menu
         )
 
-        self.app = rumps.App('TransPad', icon='icon.icns')
         # self.app._nsapp.setServicesProvider(test)
         # NSApplication.sharedApplication().setServicesProvider_(test)
         service_provider = TransPadService.alloc().init()
         NSRegisterServicesProvider(service_provider, "TransPadService")
+        return
 
-        self.app.menu = [
-            self.menu_test,
-            None,
-        ]
+    @staticmethod
+    def toggle_translate_channel(sender):
+        sender.state = not sender.state
+        if sender.state:
+            config.Common.translate_channel = TranslateChannel.GoogleAJAX
+        else:
+            config.Common.translate_channel = TranslateChannel.MacOSServices
+
+        translate_text.set_channel()
+        return
 
     def run(self):
         self.app.run()
+
+    @staticmethod
+    def window_about():
+        rumps.alert(
+            title='About TransPad',
+            message='https://github.com/rexzhang/trans-pad',
+            icon_path='icon.icns'
+        )
+        # rumps.Window('message').run()
 
     def test(self):
         if self.result_pad is None:

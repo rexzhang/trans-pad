@@ -1,6 +1,17 @@
 # TransPad
 
-## Build
+## Development
+
+Build
+
+```shell
+rm -rf build dist
+python setup.py py2app -A
+```
+
+Copy `TransPad.app` to `/Applications`
+
+## Building for deployment
 
 ```shell
 brew install create-dmg
