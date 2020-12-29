@@ -56,7 +56,6 @@ class TransPadApp:
             config.Common.translate_channel = TranslateChannel.MacOSServices
 
         config.dump()
-        translate_text.set_channel()
         return
 
     def run(self):
