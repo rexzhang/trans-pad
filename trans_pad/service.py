@@ -5,7 +5,7 @@ from Cocoa import (
     NSLocalizedString,
     NSLog,
 )
-from AppKit import (  # noqa: E501
+from AppKit import (  # noqa
     NSPasteboard,
 )
 

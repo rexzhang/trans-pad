@@ -5,7 +5,7 @@
 Build
 
 ```shell
-rm -rf build dist
+rm -rf .eggs build dist
 python setup.py py2app -A
 ```
 

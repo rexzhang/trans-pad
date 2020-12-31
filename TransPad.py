@@ -1,5 +1,5 @@
 from AppKit import (
-    NSApplication, NSRegisterServicesProvider, NSApp
+    NSApplication, NSRegisterServicesProvider
 )
 import rumps
 
@@ -9,10 +9,12 @@ from trans_pad.constantes import TranslateChannel
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad
 from trans_pad.service import TransPadService
+from trans_pad.xib.preferences import PreferencesWindow
 
 
 class TransPadApp:
     result_pad = None
+    preferences_window = None
 
     def __init__(self):
         self.menu_translate_channel_google_ajax = rumps.MenuItem(
@@ -25,6 +27,10 @@ class TransPadApp:
             self.menu_translate_channel_google_ajax.state = False
 
         menu = [
+            rumps.MenuItem(
+                title='xib',
+                callback=lambda sender: self.test_xib(sender),
+            ),
             rumps.MenuItem(
                 title='About TransPad',
                 callback=lambda _: self.window_about(),
@@ -76,6 +82,12 @@ class TransPadApp:
 
         self.result_pad.result = translate_text.translate('This is a test!')
         self.result_pad.display()
+
+    def test_xib(self, sender):
+        if self.preferences_window is None:
+            self.preferences_window = PreferencesWindow()
+
+        self.preferences_window.display(sender)
 
 
 def main():

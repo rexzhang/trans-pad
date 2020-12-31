@@ -13,6 +13,7 @@ from trans_pad.constantes import APP_NAME, TranslateChannel
 class Config(Root):
     class Common(Branch):
         translate_channel = TranslateChannel.GoogleAJAX
+        dest_language = ''
 
     class GoogleAJAX(Branch):
         service_url = 'translate.google.cn'

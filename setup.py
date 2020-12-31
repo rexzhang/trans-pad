@@ -8,7 +8,9 @@ Usage:
 from setuptools import setup
 
 APP = ['TransPad.py']
-DATA_FILES = []
+DATA_FILES = [
+    'preferences.xib',
+]
 OPTIONS = {
     'argv_emulation': True,
 
