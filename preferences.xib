@@ -34,7 +34,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <gridView xPlacement="center" yPlacement="center" rowAlignment="none" rowSpacing="12" id="cYL-Z5-KkR">
-                                            <rect key="frame" x="72" y="25" width="336" height="154"/>
+                                            <rect key="frame" x="60" y="25" width="360" height="154"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <rows>
                                                 <gridRow id="2Oi-NQ-Jmf"/>
@@ -74,24 +74,15 @@
                                                         </popUpButtonCell>
                                                     </popUpButton>
                                                 </gridCell>
-                                                <gridCell row="ctJ-af-dz8" column="ZBH-Rk-dUl" id="VRv-Am-wVm">
+                                                <gridCell row="ctJ-af-dz8" column="ZBH-Rk-dUl" id="VRv-Am-wVm"/>
+                                                <gridCell row="ctJ-af-dz8" column="AvU-2X-SIo" id="Pa1-Dm-nYJ">
                                                     <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZgP-68-rKw">
-                                                        <rect key="frame" x="116" y="105" width="18" height="18"/>
-                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dqH-u0-7vd">
+                                                        <rect key="frame" x="136" y="105" width="224" height="18"/>
+                                                        <buttonCell key="cell" type="check" title="Automatically Launch on Startup" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="dqH-u0-7vd">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
-                                                </gridCell>
-                                                <gridCell row="ctJ-af-dz8" column="AvU-2X-SIo" id="Pa1-Dm-nYJ">
-                                                    <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ppO-fe-EBj">
-                                                        <rect key="frame" x="136" y="106" width="202" height="16"/>
-                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Automatically Launch on Startup" id="q9s-fo-gGI">
-                                                            <font key="font" usesAppearanceFont="YES"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
                                                 </gridCell>
                                                 <gridCell row="ntF-n7-6i3" column="ZBH-Rk-dUl" id="hdX-RS-WNd"/>
                                                 <gridCell row="ntF-n7-6i3" column="AvU-2X-SIo" id="BK1-bR-DA8"/>
@@ -119,6 +110,9 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="destLanguage:" target="-2" id="qfh-nP-1nG"/>
+                                                        </connections>
                                                     </popUpButton>
                                                 </gridCell>
                                                 <gridCell row="FPn-S1-vKY" column="ZBH-Rk-dUl" id="zIk-eU-jr0">

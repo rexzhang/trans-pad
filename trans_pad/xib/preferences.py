@@ -2,8 +2,10 @@ from objc import IBOutlet, IBAction
 from AppKit import NSWindowController, NSApp
 
 from trans_pad.constantes import (
-    TranslationService,
-    TRANSLATION_SERVICE_TEXT_MAP,
+    Languages,
+    LANGUAGES_TEXT_MAP,
+    TranslationServices,
+    TRANSLATION_SERVICES_TEXT_MAP,
 )
 from trans_pad.config import config
 from trans_pad.helpers import PopUpButtonHelper
@@ -14,16 +16,30 @@ class PreferencesController(NSWindowController):
     destLanguage = IBOutlet()
     translationService = IBOutlet()
 
+    dest_language_helper = None
     translation_service_helper = None
 
     def windowDidLoad(self):
         NSWindowController.windowDidLoad(self)
+
+        self.dest_language_helper = PopUpButtonHelper(
+            objc_obj=self.destLanguage,
+            values=Languages,
+            selected_value=config.Common.dest_language,
+            text_map=LANGUAGES_TEXT_MAP,
+        )
         self.translation_service_helper = PopUpButtonHelper(
             objc_obj=self.translationService,
-            values=TranslationService,
+            values=TranslationServices,
             selected_value=config.Common.translation_service,
-            text_map=TRANSLATION_SERVICE_TEXT_MAP,
+            text_map=TRANSLATION_SERVICES_TEXT_MAP,
         )
+
+    @IBAction
+    def destLanguage_(self, _):
+        config.Common.dest_language = self \
+            .dest_language_helper.selected_value
+        config.dump()
 
     @IBAction
     def translationService_(self, _):
@@ -31,11 +47,7 @@ class PreferencesController(NSWindowController):
             .translation_service_helper.selected_value
         config.dump()
 
-    @IBAction
-    def destLanguage_(self, _):
-        pass
-
-    # def updateDisplay(self):
+        # def updateDisplay(self):
     #     self.counterTextField.setStringValue_(self.count)
 
 

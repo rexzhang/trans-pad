@@ -7,16 +7,23 @@ from tree_struct_config import (
 from tree_struct_config.exceptiones import ConfigFileException
 from rumps import application_support
 
-from trans_pad.constantes import APP_NAME, TranslationService
+from trans_pad.constantes import (
+    APP_NAME,
+    Languages,
+    TranslationServices,
+)
 
 
 class Config(Root):
     class Common(Branch):
-        translation_service = TranslationService.GoogleAJAX
-        dest_language = ''
+        auto_launch_on_login: bool = False
+        ui_language: Languages = Languages.zh_cn  # TODO
+
+        dest_language: Languages = Languages.zh_cn  # TODO
+        translation_service: TranslationServices = TranslationServices.GoogleAJAX
 
     class GoogleAJAX(Branch):
-        service_url = 'translate.google.cn'
+        service_url: str = 'translate.google.cn'
 
 
 config = Config(
