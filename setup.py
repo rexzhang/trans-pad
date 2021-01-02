@@ -9,7 +9,7 @@ from setuptools import setup
 
 APP = ['TransPad.py']
 DATA_FILES = [
-    'preferences.xib',
+    'trans_pad/ui/preferences.xib',
 ]
 OPTIONS = {
     'argv_emulation': True,
@@ -33,6 +33,9 @@ OPTIONS = {
         ],
     },
     # 'arch': 'universal2',
+    # 'resources': [
+    #       'img',
+    # ],
 
     'packages': [
         'rumps',

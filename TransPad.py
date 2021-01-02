@@ -4,7 +4,7 @@ from trans_pad.constantes import APP_NAME
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad
 from trans_pad.service import register_service
-from trans_pad.xib.preferences import PreferencesWindow
+from trans_pad.ui.preferences import PreferencesWindow
 
 
 class TransPadApp:
@@ -15,7 +15,7 @@ class TransPadApp:
         menu = [
             rumps.MenuItem(
                 title='Preferences...', key=',',
-                callback=lambda sender: self.test_xib(sender),
+                callback=lambda sender: self.window_preferences(sender),
             ),
             rumps.MenuItem(
                 title='About TransPad',
@@ -50,7 +50,7 @@ class TransPadApp:
         self.result_pad.result = translate_text.translate('This is a test!')
         self.result_pad.display()
 
-    def test_xib(self, sender):
+    def window_preferences(self, sender):
         if self.preferences_window is None:
             self.preferences_window = PreferencesWindow()
 
