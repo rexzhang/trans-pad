@@ -27,7 +27,8 @@ class PreferencesController(NSWindowController):
 
     @IBAction
     def translationService_(self, _):
-        config.Common.translation_service = self.translation_service_helper.selected_value
+        config.Common.translation_service = self \
+            .translation_service_helper.selected_value
         config.dump()
 
     @IBAction
@@ -43,7 +44,7 @@ class PreferencesWindow:
         self._controller = None
 
     def display(self, sender):
-        # Initiate the contrller with a XIB
+        # Initiate the controller with a XIB
         self._controller = PreferencesController.alloc() \
             .initWithWindowNibName_('preferences')
         # self._controller.loadWindow()

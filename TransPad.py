@@ -1,11 +1,9 @@
 import rumps
 
 from trans_pad.constantes import APP_NAME
-from trans_pad.config import config
-from trans_pad.constantes import TranslationService
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad
-from trans_pad.service import TransPadService, register_service
+from trans_pad.service import register_service
 from trans_pad.xib.preferences import PreferencesWindow
 
 
@@ -14,15 +12,6 @@ class TransPadApp:
     preferences_window = None
 
     def __init__(self):
-        self.menu_translate_channel_google_ajax = rumps.MenuItem(
-            title='from Google AJAX',
-            callback=lambda sender: self.toggle_translate_channel(sender)
-        )
-        if config.Common.translation_service == TranslationService.GoogleAJAX:
-            self.menu_translate_channel_google_ajax.state = True
-        else:
-            self.menu_translate_channel_google_ajax.state = False
-
         menu = [
             rumps.MenuItem(
                 title='Preferences...', key=',',
@@ -40,17 +29,6 @@ class TransPadApp:
         )
 
         register_service('TransPadService')
-        return
-
-    @staticmethod
-    def toggle_translate_channel(sender):
-        sender.state = not sender.state
-        if sender.state:
-            config.Common.translation_service = TranslationService.GoogleAJAX
-        else:
-            config.Common.translation_service = TranslationService.MacOSDictionary
-
-        config.dump()
         return
 
     def run(self):

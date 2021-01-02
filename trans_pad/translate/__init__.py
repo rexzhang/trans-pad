@@ -14,12 +14,13 @@ __all__ = [
 CHANNEL_MAP = {
     TranslationService.MacOSDictionary: TranslationServiceMacOSDictionary(),
     TranslationService.GoogleAJAX: TranslationServiceGoogleTrans(),
-    TranslationService.GoogleAPI: TranslationServiceGoogleTrans(),
+    TranslationService.GoogleAPI: TranslationServiceGoogleTrans(),  # TODO
 }
 
 
 class TranslateText:
-    def translate(self, query: str) -> str:
+    @staticmethod
+    def translate(query: str) -> str:
         # return self._translate.translate_text(query)
         return CHANNEL_MAP[
             config.Common.translation_service
