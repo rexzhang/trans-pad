@@ -4,11 +4,11 @@ APP_NAME = 'TransPad'
 
 
 @unique
-class Languages(Enum):
+class Languages(str, Enum):
     # auto = 'auto'  # TODO
-    zh_cn = 'zh-cn'
-    en = 'en'
-    fr = 'fr'
+    zh_cn: str = 'zh-cn'
+    en: str = 'en'
+    fr: str = 'fr'
 
 
 LANGUAGES_TEXT_MAP = {
@@ -125,10 +125,10 @@ LANGUAGES_TEXT_MAP = {
 
 
 @unique
-class TranslationServices(Enum):
-    MacOSDictionary = 'macos-dictionary'
-    GoogleAJAX = 'google-ajax'
-    GoogleAPI = 'Google-api'
+class TranslationServices(str, Enum):
+    MacOSDictionary: str = 'macos-dictionary'
+    GoogleAJAX: str = 'google-ajax'
+    GoogleAPI: str = 'Google-api'
 
 
 TRANSLATION_SERVICES_TEXT_MAP = {
