@@ -7,7 +7,7 @@ from CoreServices.DictionaryServices import (
 from trans_pad.translate.common import TranslateChannelAbstraction
 
 
-class TranslateChannelMacOSServices(TranslateChannelAbstraction):
+class TranslationServiceMacOSDictionary(TranslateChannelAbstraction):
     def translate_text(self, query: str) -> str:
         wordrange = (0, len(query))
         # dictresult = DCSGetTermRangeInString(None, searchword, 1)

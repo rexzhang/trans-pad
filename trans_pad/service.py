@@ -6,6 +6,8 @@ from Cocoa import (
     NSLog,
 )
 from AppKit import (  # noqa
+    NSApplication,
+    NSRegisterServicesProvider,
     NSPasteboard,
 )
 
@@ -54,3 +56,10 @@ class TransPadService(NSObject):
 
             traceback.print_exc()
             return ERROR("Exception, see traceback")
+
+
+def register_service(name: str):
+    # self.app._nsapp.setServicesProvider(test)
+    # NSApplication.sharedApplication().setServicesProvider_(test)
+    service_provider = TransPadService.alloc().init()
+    NSRegisterServicesProvider(service_provider, name)

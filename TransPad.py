@@ -1,14 +1,11 @@
-from AppKit import (
-    NSApplication, NSRegisterServicesProvider
-)
 import rumps
 
 from trans_pad.constantes import APP_NAME
 from trans_pad.config import config
-from trans_pad.constantes import TranslateChannel
+from trans_pad.constantes import TranslationService
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad
-from trans_pad.service import TransPadService
+from trans_pad.service import TransPadService, register_service
 from trans_pad.xib.preferences import PreferencesWindow
 
 
@@ -21,14 +18,14 @@ class TransPadApp:
             title='from Google AJAX',
             callback=lambda sender: self.toggle_translate_channel(sender)
         )
-        if config.Common.translate_channel == TranslateChannel.GoogleAJAX:
+        if config.Common.translation_service == TranslationService.GoogleAJAX:
             self.menu_translate_channel_google_ajax.state = True
         else:
             self.menu_translate_channel_google_ajax.state = False
 
         menu = [
             rumps.MenuItem(
-                title='xib',
+                title='Preferences...', key=',',
                 callback=lambda sender: self.test_xib(sender),
             ),
             rumps.MenuItem(
@@ -36,30 +33,22 @@ class TransPadApp:
                 callback=lambda _: self.window_about(),
             ),
             rumps.separator,
-
-            rumps.MenuItem('Translation provider: macOS Dictionary or Google'),
-            self.menu_translate_channel_google_ajax,
-
-            rumps.separator,
         ]
 
         self.app = rumps.App(
             APP_NAME, icon='icon.icns', template=True, menu=menu
         )
 
-        # self.app._nsapp.setServicesProvider(test)
-        # NSApplication.sharedApplication().setServicesProvider_(test)
-        service_provider = TransPadService.alloc().init()
-        NSRegisterServicesProvider(service_provider, "TransPadService")
+        register_service('TransPadService')
         return
 
     @staticmethod
     def toggle_translate_channel(sender):
         sender.state = not sender.state
         if sender.state:
-            config.Common.translate_channel = TranslateChannel.GoogleAJAX
+            config.Common.translation_service = TranslationService.GoogleAJAX
         else:
-            config.Common.translate_channel = TranslateChannel.MacOSServices
+            config.Common.translation_service = TranslationService.MacOSDictionary
 
         config.dump()
         return

@@ -1,40 +1,41 @@
 from objc import IBOutlet, IBAction
 from AppKit import NSWindowController, NSApp
 
+from trans_pad.constantes import (
+    TranslationService,
+    TRANSLATION_SERVICE_TEXT_MAP,
+)
+from trans_pad.config import config
+from trans_pad.helpers import PopUpButtonHelper
+
 
 class PreferencesController(NSWindowController):
-    count = 0
-    counterTextField = IBOutlet()
-    channelListDataSource = IBOutlet()
-    channelList = IBOutlet()
+    uiLanguage = IBOutlet()
+    destLanguage = IBOutlet()
+    translationService = IBOutlet()
 
-    # def windowDidLoad(self):
-    #     NSWindowController.windowDidLoad(self)
-    #
-    #     # Start the counter
-    #     self.count = 0
+    translation_service_helper = None
+
+    def windowDidLoad(self):
+        NSWindowController.windowDidLoad(self)
+        self.translation_service_helper = PopUpButtonHelper(
+            objc_obj=self.translationService,
+            values=TranslationService,
+            selected_value=config.Common.translation_service,
+            text_map=TRANSLATION_SERVICE_TEXT_MAP,
+        )
 
     @IBAction
-    def increment_(self, sender):
-        self.count += 1
-        self.updateDisplay()
+    def translationService_(self, _):
+        config.Common.translation_service = self.translation_service_helper.selected_value
+        config.dump()
 
     @IBAction
-    def displayInfo_(self, sender):
-        # print(self)
-        # print(sender)
+    def destLanguage_(self, _):
+        pass
 
-        self.channelList.removeAllItems()
-        print(self.channelList.numberOfItems())
-        self.channelList.addItemWithTitle_('test1')
-        self.channelList.addItemWithTitle_('test2')
-        print(self.channelList.numberOfItems())
-        print(self.channelList.indexOfSelectedItem())
-        self.channelList.selectItemAtIndex_(1)
-        print(self.channelList.indexOfSelectedItem())
-
-    def updateDisplay(self):
-        self.counterTextField.setStringValue_(self.count)
+    # def updateDisplay(self):
+    #     self.counterTextField.setStringValue_(self.count)
 
 
 class PreferencesWindow:

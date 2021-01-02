@@ -3,7 +3,7 @@ from googletrans import Translator as GoogleTranslator
 from trans_pad.translate.common import TranslateChannelAbstraction
 
 
-class TranslateChannelGoogleTrans(TranslateChannelAbstraction):
+class TranslationServiceGoogleTrans(TranslateChannelAbstraction):
     def __init__(self):
         self.t = GoogleTranslator(service_urls=['translate.google.cn', ])
 
