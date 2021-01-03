@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesController">
             <connections>
                 <outlet property="destLanguage" destination="976-gc-M0v" id="pVz-0B-m3i"/>
+                <outlet property="sentryDsn" destination="Ebh-DW-PWm" id="OCb-10-mcN"/>
                 <outlet property="translationService" destination="mkB-dp-EFS" id="Ml9-Cg-xjE"/>
                 <outlet property="uiLanguage" destination="Iui-HG-4Iz" id="ubc-Fv-MrO"/>
             </connections>
@@ -213,6 +214,51 @@
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
+                                                    </textField>
+                                                </gridCell>
+                                            </gridCells>
+                                        </gridView>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="Support" identifier="" id="PgV-LG-9h1">
+                                <view key="view" id="pHj-df-9wZ">
+                                    <rect key="frame" x="10" y="33" width="480" height="204"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <gridView xPlacement="center" yPlacement="center" rowAlignment="firstBaseline" id="FhU-3O-BZf">
+                                            <rect key="frame" x="151" y="91" width="177" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rows>
+                                                <gridRow id="o4d-Oh-nHE"/>
+                                            </rows>
+                                            <columns>
+                                                <gridColumn xPlacement="trailing" id="H38-p6-46O"/>
+                                                <gridColumn xPlacement="leading" id="Edm-RD-8EH"/>
+                                            </columns>
+                                            <gridCells>
+                                                <gridCell row="o4d-Oh-nHE" column="H38-p6-46O" id="ZS4-bj-KlN">
+                                                    <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ORm-rK-yLG">
+                                                        <rect key="frame" x="-2" y="3" width="75" height="16"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sentry DSN" id="Fo9-2y-d26">
+                                                            <font key="font" usesAppearanceFont="YES"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </gridCell>
+                                                <gridCell row="o4d-Oh-nHE" column="Edm-RD-8EH" id="fgh-BC-68K">
+                                                    <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" id="Ebh-DW-PWm">
+                                                        <rect key="frame" x="77" y="1" width="100" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="KE3-ov-Dgz">
+                                                            <font key="font" usesAppearanceFont="YES"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <action selector="sentryDsn:" target="-2" id="mk5-JE-9Ze"/>
+                                                        </connections>
                                                     </textField>
                                                 </gridCell>
                                             </gridCells>

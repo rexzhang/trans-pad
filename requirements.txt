@@ -6,5 +6,7 @@ pyobjc-framework-Cocoa
 pyobjc-framework-CoreServices
 pyobjc-framework-WebKit
 
-wheel
 sentry-sdk
+
+# for build
+wheel

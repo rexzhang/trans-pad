@@ -38,11 +38,15 @@ OPTIONS = {
     # ],
 
     'packages': [
+        # GUI
         'rumps',
 
+        # 3rd
+        'tree_struct_config',
         'googletrans',
 
-        'sentry-sdk',
+        # support
+        'sentry_sdk',
     ],
 }
 
