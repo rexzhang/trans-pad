@@ -1,5 +1,15 @@
 # TransPad
 
+## Requirements
+
+### basic
+
+- macOS 10.12(Sierra)+
+
+### development
+
+- Python 3.?+
+
 ## Building for Development
 
 Build

@@ -41,6 +41,8 @@ OPTIONS = {
         'rumps',
 
         'googletrans',
+
+        'sentry-sdk',
     ],
 }
 

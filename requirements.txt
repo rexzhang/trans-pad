@@ -7,3 +7,4 @@ pyobjc-framework-CoreServices
 pyobjc-framework-WebKit
 
 wheel
+sentry-sdk

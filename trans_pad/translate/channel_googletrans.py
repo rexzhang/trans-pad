@@ -10,6 +10,7 @@ class TranslationServiceGoogleTrans(TranslateChannelAbstraction):
 
     def translate_text(self, query: str, dest_lang: Languages) -> str:
         try:
+            from trans_pad.config import config
             result = self.t.translate(query, src='auto', dest=dest_lang.value)
         except TypeError:
             return 'some thing wrong...'

@@ -12,6 +12,7 @@ from trans_pad.constantes import (
     Languages,
     TranslationServices,
 )
+from trans_pad.sentry import init_sentry
 
 
 class Config(Root):
@@ -22,6 +23,9 @@ class Config(Root):
         dest_language: Languages = Languages.zh_cn  # TODO
         translation_service: TranslationServices = TranslationServices.GoogleAJAX
 
+    class Support(Branch):
+        sentry_dsn: str = ''
+
     class GoogleAJAX(Branch):
         service_url: str = 'translate.google.cn'
 
@@ -31,6 +35,16 @@ config = Config(
 )
 try:
     config.load()
+    # TODO, fix it in tree_struct_config
+    config.Common.dest_language = Languages(config.Common.dest_language)
+    config.Common.translation_service = TranslationServices(
+        config.Common.translation_service
+    )
 
 except (ConfigFileException, TypeError):
     pass
+if config.Support.sentry_dsn and len(config.Support.sentry_dsn) > 10:
+    init_sentry(
+        dsn=config.Support.sentry_dsn,
+        app_name='TransPad',
+    )
