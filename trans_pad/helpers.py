@@ -1,12 +1,20 @@
+import logging
 from enum import Enum, EnumMeta
 from typing import Optional, Union
 
 from Cocoa import NSLog
 
 
-class Logger:
-    def debug(self, *args):
-        NSLog(' '.join(map(str, args)))
+class LoggingNSLogHandler(logging.Handler):
+    def emit(self, record: logging.LogRecord):
+        message = self.format(record)
+        # print('!!!', len(message), type(message), message)
+
+        while len(message) > 1024:
+            NSLog(message[:1024])
+            message = message[1024:]
+
+        NSLog(message)
 
 
 class PopUpButtonHelper:
@@ -38,6 +46,7 @@ class PopUpButtonHelper:
             )
         else:
             raise Exception(
+                'class PopUpButtonHelper()',
                 type(values), values, type(selected_value), selected_value
             )
 
