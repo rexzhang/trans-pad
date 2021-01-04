@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesController">
             <connections>
                 <outlet property="destLanguage" destination="976-gc-M0v" id="pVz-0B-m3i"/>
+                <outlet property="googleServiceURL" destination="SjL-eb-r6g" id="kfj-OM-TRN"/>
                 <outlet property="sentryDsn" destination="Ebh-DW-PWm" id="OCb-10-mcN"/>
                 <outlet property="translationService" destination="mkB-dp-EFS" id="Ml9-Cg-xjE"/>
                 <outlet property="uiLanguage" destination="Iui-HG-4Iz" id="ubc-Fv-MrO"/>
@@ -181,7 +182,7 @@
                                                     </textField>
                                                 </gridCell>
                                                 <gridCell row="NBK-aQ-yQ4" column="d8b-x4-ew8" id="bD1-Rl-WKz">
-                                                    <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SjL-eb-r6g">
+                                                    <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SjL-eb-r6g" userLabel="googleServiceURL">
                                                         <rect key="frame" x="77" y="23" width="78" height="25"/>
                                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Nea-QX-bEe" id="Qcm-m4-b3j">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -194,6 +195,9 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="googleServiceURL:" target="-2" id="WDk-fg-J1v"/>
+                                                        </connections>
                                                     </popUpButton>
                                                 </gridCell>
                                                 <gridCell row="P4N-6n-cn5" column="z5F-qz-Np3" id="Gn7-yx-6Xa">

@@ -6,6 +6,7 @@ from trans_pad.constantes import (
     LANGUAGES_TEXT_MAP,
     TranslationServices,
     TRANSLATION_SERVICES_TEXT_MAP,
+    GOOGLE_SERVICE_URLS,
 )
 from trans_pad.config import config
 from trans_pad.helpers import PopUpButtonHelper
@@ -19,6 +20,11 @@ class PreferencesController(NSWindowController):
 
     dest_language_helper = None
     translation_service_helper = None
+
+    # Google
+    googleServiceURL = IBOutlet()
+
+    google_service_url_helper = None
 
     # Support
     sentryDsn = IBOutlet()
@@ -40,6 +46,14 @@ class PreferencesController(NSWindowController):
             text_map=TRANSLATION_SERVICES_TEXT_MAP,
         )
 
+        # Google
+        self.google_service_url_helper = PopUpButtonHelper(
+            objc_obj=self.googleServiceURL,
+            values=GOOGLE_SERVICE_URLS,
+            selected_value=config.Google.service_url,
+            text_map=None,
+        )
+
         # Support
         self.sentryDsn.setStringValue_(config.Support.sentry_dsn)
 
@@ -55,8 +69,11 @@ class PreferencesController(NSWindowController):
             .translation_service_helper.selected_value
         config.dump()
 
-    # def updateDisplay(self):
-    #     self.counterTextField.setStringValue_(self.count)
+    @IBAction
+    def googleServiceURL_(self, _):
+        config.Google.service_url = self \
+            .google_service_url_helper.selected_value
+        config.dump()
 
     @IBAction
     def sentryDsn_(self, _):

@@ -26,7 +26,7 @@ class Config(Root):
     class Support(Branch):
         sentry_dsn: str = ''
 
-    class GoogleAJAX(Branch):
+    class Google(Branch):
         service_url: str = 'translate.google.cn'
 
 
