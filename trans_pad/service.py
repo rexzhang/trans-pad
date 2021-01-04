@@ -40,8 +40,8 @@ class TransPadService(NSObject):
                 pboard_string = pboard.stringForType_(NSStringPboardType)
             if pboard_string is None:
                 return ERROR(NSLocalizedString(
-                    "Error: Pasteboard doesn't contain a string.",
-                    "Pasteboard couldn't give string.",
+                    "Error: Pasteboard doesn'_gt contain a string.",
+                    "Pasteboard couldn'_gt give string.",
                 ))
 
             new_string = translate_text.translate(pboard_string)

@@ -2,11 +2,10 @@ import logging
 
 from trans_pad.config import config
 from trans_pad.constantes import TranslationServices
-from trans_pad.translate.channel_macos_services import (
-    TranslationServiceMacOSDictionary
-)
-from trans_pad.translate.channel_googletrans import (
-    TranslationServiceGoogleTrans,
+from trans_pad.translate.service import (
+    TranslationServiceMacOSDictionary,
+    TranslationServiceGoogleAJAX,
+
 )
 
 __all__ = [
@@ -15,10 +14,10 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-TRANSLATION_SOURCE_MAP = {
+TRANSLATION_SERVICE_MAP = {
     TranslationServices.MacOSDictionary: TranslationServiceMacOSDictionary(),
-    TranslationServices.GoogleAJAX: TranslationServiceGoogleTrans(),
-    TranslationServices.GoogleAPI: TranslationServiceGoogleTrans(),  # TODO
+    TranslationServices.GoogleAJAX: TranslationServiceGoogleAJAX(),
+    TranslationServices.GoogleAPI: TranslationServiceGoogleAJAX(),  # TODO
 }
 
 
@@ -26,7 +25,8 @@ class TranslateText:
     @staticmethod
     def translate(query: str) -> str:
         logger.debug('{} {}'.format(query, config.Common.dest_language))
-        return TRANSLATION_SOURCE_MAP[
+
+        return TRANSLATION_SERVICE_MAP[
             config.Common.translation_service
         ].translate_text(query=query, dest_lang=config.Common.dest_language)
 
