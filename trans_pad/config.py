@@ -12,7 +12,6 @@ from trans_pad.constantes import (
     Languages,
     TranslationServices,
 )
-from trans_pad.sentry import init_sentry
 
 
 class Config(Root):
@@ -43,8 +42,3 @@ try:
 
 except (ConfigFileException, TypeError):
     pass
-if config.Support.sentry_dsn and len(config.Support.sentry_dsn) > 10:
-    init_sentry(
-        dsn=config.Support.sentry_dsn,
-        app_name='TransPad',
-    )

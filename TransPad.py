@@ -2,7 +2,9 @@ import logging.config
 
 import rumps
 
+from trans_pad.config import config
 from trans_pad.trans_pad import main
+from trans_pad.sentry import init_sentry
 
 LOGGING = {
     'version': 1,
@@ -42,6 +44,10 @@ LOGGING = {
 
 if __name__ == '__main__':
     logging.config.dictConfig(LOGGING)
+    init_sentry(
+        dsn=config.Support.sentry_dsn,
+        app_name='TransPad',
+    )
     rumps.debug_mode(True)
 
     main()

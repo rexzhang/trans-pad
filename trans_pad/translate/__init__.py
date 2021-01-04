@@ -24,7 +24,9 @@ TRANSLATION_SERVICE_MAP = {
 class TranslateText:
     @staticmethod
     def translate(query: str) -> str:
-        logger.debug('{} {}'.format(query, config.Common.dest_language))
+        logger.debug('query:{} dest_lang:{}'.format(
+            query, config.Common.dest_language
+        ))
 
         return TRANSLATION_SERVICE_MAP[
             config.Common.translation_service

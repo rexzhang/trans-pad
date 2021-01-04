@@ -1,9 +1,10 @@
+import logging
+
 from Cocoa import (
     NSObject,
     NSString,
     NSStringPboardType,
     NSLocalizedString,
-    NSLog,
 )
 from AppKit import (  # noqa
     NSApplication,
@@ -14,7 +15,10 @@ from AppKit import (  # noqa
 from objc import typedSelector
 import rumps
 
+from trans_pad.sentry import capture_exception
 from trans_pad.translate import translate_text
+
+logger = logging.getLogger(__name__)
 
 SERVICE_SELECTOR = b'v@:@@o^@'
 
@@ -23,8 +27,8 @@ class MyPastBoard(NSPasteboard):
     pass
 
 
-def ERROR(s):
-    NSLog(u"ERROR: %s", s)
+def error(s):
+    logger.error(s)
     return s
 
 
@@ -32,16 +36,18 @@ class TransPadService(NSObject):
     # @service_selector
     @typedSelector(SERVICE_SELECTOR)
     def translateTextService_userData_error_(self, pboard, data, err):
-        # NSLog(u"doCapitalizeService_userData_error_(%s, %s)", pboard, data)
+        logger.debug('received some request from service:{} {}'.format(
+            pboard, data
+        ))
         try:
             types = pboard.types()
             pboard_string = None
             if NSStringPboardType in types:
                 pboard_string = pboard.stringForType_(NSStringPboardType)
             if pboard_string is None:
-                return ERROR(NSLocalizedString(
-                    "Error: Pasteboard doesn'_gt contain a string.",
-                    "Pasteboard couldn'_gt give string.",
+                return error(NSLocalizedString(
+                    "Error: Pasteboard doesn't contain a string.",
+                    "Pasteboard couldn't give string.",
                 ))
 
             new_string = translate_text.translate(pboard_string)
@@ -50,12 +56,13 @@ class TransPadService(NSObject):
             types = [NSStringPboardType]
             pboard.declareTypes_owner_([NSStringPboardType], None)
             pboard.setString_forType_(new_string, NSStringPboardType)
-            return ERROR(None)
-        except:  # noqa: E722, B001
-            import traceback
+            return ''
 
-            traceback.print_exc()
-            return ERROR("Exception, see traceback")
+        except Exception as e:  # noqa: E722, B001
+            capture_exception(e)
+            # import traceback
+            # traceback.print_exc()
+            return error("Exception, see traceback")
 
 
 def register_service(name: str):

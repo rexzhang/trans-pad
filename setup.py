@@ -20,15 +20,16 @@ OPTIONS = {
         'LSUIElement': True,
         'NSServices': [
             {
+                'NSMessage': 'translateTextService',
+                'NSPortName': 'TransPadService',
                 'NSMenuItem': {
                     'default': 'TransPad: Translate',
                     'Chinese': 'TransPad: 翻译文本',
                     'English': 'TransPad: Translate Text',
                 },
-                'NSMessage': 'translateTextService',
-                'NSPortName': 'TransPadService',
-                'NSReturnTypes': ['NSStringPboardType'],
                 'NSSendTypes': ['NSStringPboardType'],
+                # 'NSReturnTypes': ['NSStringPboardType'],
+                'NSTimeout': 10000,  # 10 seconds
             },
         ],
     },

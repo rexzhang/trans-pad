@@ -1,7 +1,8 @@
-import logging
-
 import sentry_sdk
-from sentry_sdk import configure_scope
+from sentry_sdk import (
+    configure_scope,
+    capture_exception as sentry_capture_exception
+)
 from sentry_sdk.integrations.excepthook import ExcepthookIntegration
 from sentry_sdk.integrations.stdlib import StdlibIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
@@ -11,11 +12,10 @@ INTEGRATIONS = [
     ExcepthookIntegration(always_run=True),
     StdlibIntegration(),
     ThreadingIntegration(propagate_hub=True),
-    LoggingIntegration(
-        level=logging.WARNING,  # Capture info and above as breadcrumbs
-        event_level=logging.ERROR  # Send errors as events
-    ),
+    LoggingIntegration(),
 ]
+
+_sentry_initialized = False
 
 
 def get_mac_address() -> str:
@@ -33,7 +33,12 @@ def get_mac_address() -> str:
     return mac.upper()
 
 
-def init_sentry(dsn: str, app_name: str = 'PyApp', app_version: str = '0.0.0'):
+def init_sentry(
+    dsn: str, app_name: str = 'PyApp', app_version: str = '0.0.0'
+) -> None:
+    if dsn is None or len(dsn) < 10:
+        return
+
     sentry_sdk.init(
         dsn=dsn,
         environment='release',
@@ -55,3 +60,13 @@ def init_sentry(dsn: str, app_name: str = 'PyApp', app_version: str = '0.0.0'):
         scope.set_user({
             'id': mac_address
         })
+
+    global _sentry_initialized
+    _sentry_initialized = True
+    return
+
+
+def capture_exception(e):
+    global _sentry_initialized
+    if _sentry_initialized:
+        sentry_capture_exception(e)
