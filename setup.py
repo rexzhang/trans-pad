@@ -29,7 +29,7 @@ OPTIONS = {
                 },
                 'NSSendTypes': ['NSStringPboardType'],
                 # 'NSReturnTypes': ['NSStringPboardType'],
-                'NSTimeout': 10000,  # 10 seconds
+                'NSTimeout': '10000',  # 10 seconds
             },
         ],
     },
