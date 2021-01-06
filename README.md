@@ -8,7 +8,7 @@
 
 ### development
 
-- Python 3.?+
+- Python 3.8
 
 ## Building for Development
 
@@ -23,8 +23,25 @@ Copy `TransPad.app` to `/Applications`
 
 ## Building for deployment
 
+### Install tools
+
+brew
+
 ```shell
 brew install create-dmg
+```
+
+or
+
+```shell
+git clone https://github.com/create-dmg/create-dmg.git
+cd create-dmg
+sudo make install
+```
+
+### Build it
+
+```shell
 ./Build.sh
 ```
 
