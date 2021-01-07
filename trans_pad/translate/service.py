@@ -6,7 +6,7 @@ from CoreServices.DictionaryServices import (
 from googletrans import Translator as GoogleTranslator
 from googletrans.constants import DEFAULT_SERVICE_URLS
 
-from trans_pad.constantes import Languages
+from trans_pad.constants import Languages
 from trans_pad.config import config
 from trans_pad.helpers import MacOSInfo
 

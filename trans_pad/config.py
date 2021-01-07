@@ -7,7 +7,7 @@ from tree_struct_config import (
 from tree_struct_config.exceptiones import ConfigFileException
 from rumps import application_support
 
-from trans_pad.constantes import (
+from trans_pad.constants import (
     APP_NAME,
     Languages,
     TranslationServices,

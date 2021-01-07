@@ -2,7 +2,7 @@ import logging
 
 import rumps
 
-from trans_pad.constantes import APP_NAME
+from trans_pad.constants import APP_NAME
 from trans_pad.translate import translate_text
 from trans_pad.result_pad import ResultPad
 from trans_pad.service import register_service

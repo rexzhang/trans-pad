@@ -1,7 +1,7 @@
 import logging
 
 from trans_pad.config import config
-from trans_pad.constantes import TranslationServices
+from trans_pad.constants import TranslationServices
 from trans_pad.translate.service import (
     TranslationServiceMacOSDictionary,
     TranslationServiceGoogleAJAX,

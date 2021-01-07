@@ -1,11 +1,9 @@
 from objc import IBOutlet, IBAction
 from AppKit import NSWindowController, NSApp
 
-from trans_pad.constantes import (
+from trans_pad.constants import (
     Languages,
-    LANGUAGES_TEXT_MAP,
     TranslationServices,
-    TRANSLATION_SERVICES_TEXT_MAP,
 )
 from trans_pad.config import config
 from trans_pad.helpers import i18n, PopUpButtonHelper
@@ -38,19 +36,19 @@ class PreferencesController(NSWindowController):
             objc_obj=self.uiLanguage,
             values=Languages,
             selected_value=config.Common.ui_language,
-            text_map=LANGUAGES_TEXT_MAP,
+            text_map=Languages.text_map(),
         )
         self.dest_language_helper = PopUpButtonHelper(
             objc_obj=self.destLanguage,
             values=Languages,
             selected_value=config.Common.dest_language,
-            text_map=LANGUAGES_TEXT_MAP,
+            text_map=Languages.text_map(),
         )
         self.translation_service_helper = PopUpButtonHelper(
             objc_obj=self.translationService,
             values=TranslationServices,
             selected_value=config.Common.translation_service,
-            text_map=TRANSLATION_SERVICES_TEXT_MAP,
+            text_map=TranslationServices.text_map(),
         )
 
         # Google

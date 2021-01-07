@@ -35,7 +35,7 @@ def cli_build_pop_clip_extension():
 
 
 LANGUAGES = (
-    'en', 'zh_CN'
+    'en', 'fr', 'zh_CN'
 )
 
 

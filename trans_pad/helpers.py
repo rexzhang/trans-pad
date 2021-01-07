@@ -9,7 +9,7 @@ from Cocoa import (
     NSUserDefaults,
 )
 
-from trans_pad.constantes import Languages
+from trans_pad.constants import Languages
 from trans_pad.config import config
 
 
@@ -37,9 +37,7 @@ class MacOSInfo:
     _ns_user_defaults = None  # .dictionaryRepresentation()
 
     @property
-    def system_language(
-        self, fallback_lang: Languages = Languages.en
-    ) -> Languages:
+    def system_language(self) -> Languages:
         if self._ns_user_defaults is None:
             self._ns_user_defaults = NSUserDefaults.standardUserDefaults()
 
@@ -49,8 +47,7 @@ class MacOSInfo:
             )
         except ValueError:
             # TODO logging
-            # lang = Languages.fallback_lang
-            lang = fallback_lang
+            lang = Languages.fallback_language()
 
         return lang
 
