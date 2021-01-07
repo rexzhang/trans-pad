@@ -10,8 +10,8 @@ def cli():
     pass
 
 
-@cli.command('popclip', help='Only build PopClip extension')
-def build_pop_clip_extension():
+@cli.command('popclip', help='Build PopClip extension')
+def cli_build_pop_clip_extension():
     filename_list = (
         ('popclip-extension/Config.plist', 'Config.plist'),
         'icon.png',
@@ -34,19 +34,38 @@ def build_pop_clip_extension():
     return
 
 
-# @cli.command('gettext', help='Extract gettext message to TransPad.pot')
-def gettext_extract_to_pot():
-    subprocess.run(
-        ['xgettext', '-v', '-f', 'gettext.txt', '-o', 'gettext/TransPad.pot'],
-        # capture_output=True,
-    )
+LANGUAGES = (
+    'en', 'zh_CN'
+)
+
+
+def update_gettext():
+    # Extract gettext message to TransPad.pot
+    subprocess.run([
+        'xgettext', '-v',
+        '-f', Path('gettext').joinpath('source.txt'),
+        '-o', Path('gettext').joinpath('TransPad.pot')
+    ])
+
+    # Update all *.po file from TransPad.pot
+    for language in LANGUAGES:
+        if language == 'en':
+            continue
+
+        subprocess.run([
+            'msgmerge', '--update',
+            Path('gettext').joinpath('{}.po'.format(language)),
+            Path('gettext').joinpath('TransPad.pot')
+        ])
+
+
+@cli.command('update', help='Update gettext file: *.pot, *.po')
+def cli_update_gettext():
+    update_gettext()
 
 
 def build_gettext():
-    languages = (
-        'en', 'zh_CN'
-    )
-    for language in languages:
+    for language in LANGUAGES:
         Path('po').joinpath(
             language, 'LC_MESSAGES'
         ).mkdir(parents=True, exist_ok=True)
@@ -56,8 +75,8 @@ def build_gettext():
         )
 
 
-@cli.command('gettext')
-def build_gettext_cli():
+@cli.command('gettext', help='build gettext file: *.mo')
+def cli_build_gettext():
     build_gettext()
 
 
@@ -70,14 +89,14 @@ def build_app_for_dev():
     )
 
 
-@cli.command('app', help='Only build TransPad.app')
+@cli.command('app', help='Build TransPad.app')
 # @click.option('--release', default=False, help='build release app')
 def cli_build_app():
     build_app_for_dev()
 
 
 @cli.command('all', help='Build ALL')
-def build_all():
+def cli_build_all():
     build_gettext()
     build_app_for_dev()
 
