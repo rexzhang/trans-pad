@@ -6,10 +6,10 @@ from trans_pad.constantes import (
     LANGUAGES_TEXT_MAP,
     TranslationServices,
     TRANSLATION_SERVICES_TEXT_MAP,
-    GOOGLE_SERVICE_URLS,
 )
 from trans_pad.config import config
 from trans_pad.helpers import PopUpButtonHelper
+from trans_pad.translate.service import GOOGLE_SERVICE_URLS
 
 
 class PreferencesController(NSWindowController):

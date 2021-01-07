@@ -2,26 +2,30 @@
 
 ## Requirements
 
-### basic
+### Basic
 
 - macOS 10.12(Sierra)+
 
-### development
+### Development
 
 - Python 3.8
 
 ## Building for Development
 
-Build
+### Build
 
 ```shell
 rm -rf .eggs build dist
 python setup.py py2app -A
 ```
 
-Copy `TransPad.app` to `/Applications`
+### Run it
 
-## Building for deployment
+```shell
+./dist/TransPad.app/Contents/MacOS/TransPad
+```
+
+## Building for Deployment
 
 ### Install tools
 

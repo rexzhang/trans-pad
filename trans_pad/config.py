@@ -17,9 +17,9 @@ from trans_pad.constantes import (
 class Config(Root):
     class Common(Branch):
         auto_launch_on_login: bool = False
-        ui_language: Languages = Languages.zh_cn  # TODO
+        ui_language: Languages = Languages.AUTO
 
-        dest_language: Languages = Languages.zh_cn  # TODO
+        dest_language: Languages = Languages.AUTO
         translation_service: TranslationServices = TranslationServices.GoogleAJAX
 
     class Support(Branch):
@@ -34,8 +34,17 @@ config = Config(
 )
 try:
     config.load()
+
     # TODO, fix it in tree_struct_config
-    config.Common.dest_language = Languages(config.Common.dest_language)
+    try:
+        config.Common.ui_language = Languages(config.Common.ui_language)
+    except ValueError:
+        config.Common.ui_language = Languages.AUTO
+    try:
+        config.Common.dest_language = Languages(config.Common.dest_language)
+    except ValueError:
+        config.Common.dest_language = Languages.AUTO
+
     config.Common.translation_service = TranslationServices(
         config.Common.translation_service
     )

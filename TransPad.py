@@ -48,6 +48,6 @@ if __name__ == '__main__':
         dsn=config.Support.sentry_dsn,
         app_name='TransPad',
     )
-    rumps.debug_mode(True)
+    # rumps.debug_mode(True)
 
     main()
