@@ -42,7 +42,7 @@ class TranslationServiceGoogleAJAX(TranslateServiceAbstraction):
     @staticmethod
     def _get_dest_lang_id(dest_lang: Languages) -> str:
         if dest_lang == Languages.AUTO:
-            return MacOSInfo().system_language.value
+            dest_lang = MacOSInfo().system_language
 
         if dest_lang.value in GOOGLE_LANGUAGE_ID_MAP:
             return dest_lang.value

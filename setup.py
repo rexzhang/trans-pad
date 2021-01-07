@@ -34,9 +34,10 @@ OPTIONS = {
         ],
     },
     # 'arch': 'universal2',
-    # 'resources': [
-    #       'img',
-    # ],
+    'resources': [
+        'icon.icns',
+        'po'
+    ],
 
     'packages': [
         # GUI

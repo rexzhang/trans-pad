@@ -15,8 +15,7 @@
 ### Build
 
 ```shell
-rm -rf .eggs build dist
-python setup.py py2app -A
+python build.py all
 ```
 
 ### Run it

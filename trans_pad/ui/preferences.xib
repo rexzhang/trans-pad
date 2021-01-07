@@ -74,6 +74,9 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="uiLanguage:" target="-2" id="s1P-lA-4ey"/>
+                                                        </connections>
                                                     </popUpButton>
                                                 </gridCell>
                                                 <gridCell row="ctJ-af-dz8" column="ZBH-Rk-dUl" id="VRv-Am-wVm"/>
@@ -252,9 +255,8 @@
                                                     </textField>
                                                 </gridCell>
                                                 <gridCell row="o4d-Oh-nHE" column="Edm-RD-8EH" id="fgh-BC-68K">
-                                                    <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" id="Ebh-DW-PWm">
+                                                    <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ebh-DW-PWm">
                                                         <rect key="frame" x="77" y="1" width="100" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="KE3-ov-Dgz">
                                                             <font key="font" usesAppearanceFont="YES"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

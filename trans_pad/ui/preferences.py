@@ -8,7 +8,7 @@ from trans_pad.constantes import (
     TRANSLATION_SERVICES_TEXT_MAP,
 )
 from trans_pad.config import config
-from trans_pad.helpers import PopUpButtonHelper
+from trans_pad.helpers import i18n, PopUpButtonHelper
 from trans_pad.translate.service import GOOGLE_SERVICE_URLS
 
 
@@ -18,6 +18,7 @@ class PreferencesController(NSWindowController):
     destLanguage = IBOutlet()
     translationService = IBOutlet()
 
+    ui_language_helper = None
     dest_language_helper = None
     translation_service_helper = None
 
@@ -33,6 +34,12 @@ class PreferencesController(NSWindowController):
         NSWindowController.windowDidLoad(self)
 
         # General
+        self.ui_language_helper = PopUpButtonHelper(
+            objc_obj=self.uiLanguage,
+            values=Languages,
+            selected_value=config.Common.ui_language,
+            text_map=LANGUAGES_TEXT_MAP,
+        )
         self.dest_language_helper = PopUpButtonHelper(
             objc_obj=self.destLanguage,
             values=Languages,
@@ -56,6 +63,14 @@ class PreferencesController(NSWindowController):
 
         # Support
         self.sentryDsn.setStringValue_(config.Support.sentry_dsn)
+
+    @IBAction
+    def uiLanguage_(self, _):
+        config.Common.ui_language = self \
+            .ui_language_helper.selected_value
+        config.dump()
+
+        i18n()
 
     @IBAction
     def destLanguage_(self, _):

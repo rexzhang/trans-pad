@@ -1,4 +1,6 @@
+import gettext
 import logging
+from pathlib import Path
 from enum import Enum, EnumMeta
 from typing import Optional, Union
 
@@ -8,22 +10,47 @@ from Cocoa import (
 )
 
 from trans_pad.constantes import Languages
+from trans_pad.config import config
+
+
+def i18n():
+    if config.Common.ui_language == Languages.AUTO:
+        ui_language = MacOSInfo().system_language
+    else:
+        ui_language = config.Common.ui_language
+
+    path = Path(__file__).parent.parent
+    if path.name == 'python38.zip':
+        # in app Bundle
+        path = path.parent.parent
+
+    lang = gettext.translation(
+        'TransPad',
+        localedir=path.joinpath('po'),
+        languages=[ui_language.value],
+        fallback=True
+    )
+    lang.install()
 
 
 class MacOSInfo:
     _ns_user_defaults = None  # .dictionaryRepresentation()
 
     @property
-    def system_language(self) -> Languages:
+    def system_language(
+        self, fallback_lang: Languages = Languages.en
+    ) -> Languages:
         if self._ns_user_defaults is None:
             self._ns_user_defaults = NSUserDefaults.standardUserDefaults()
 
         try:
             lang = Languages(
-                self._ns_user_defaults.stringForKey_('AppleLocale').lower()
+                self._ns_user_defaults.stringForKey_('AppleLocale')
             )
         except ValueError:
-            lang = Languages
+            # TODO logging
+            # lang = Languages.fallback_lang
+            lang = fallback_lang
 
         return lang
 

@@ -7,13 +7,16 @@ APP_NAME = 'TransPad'
 class Languages(str, Enum):
     """
     key: '{}_{}.format(ISO 639-3, ISO 3166-1 Alpha-2)
-    value : key.lower()
+    value : key
     """
     AUTO = 'auto'
 
     en: str = 'en'
     fr: str = 'fr'
-    zh_CN: str = 'zh_cn'
+    zh_CN: str = 'zh_CN'
+
+    # def fallback_language(self): # TODO
+    #     return self.en
 
 
 LANGUAGES_TEXT_MAP = {

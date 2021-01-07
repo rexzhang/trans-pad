@@ -11,3 +11,4 @@ sentry-sdk
 # for build
 wheel
 py2app
+click

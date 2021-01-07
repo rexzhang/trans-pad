@@ -18,11 +18,11 @@ class TransPadApp:
     def __init__(self):
         menu = [
             rumps.MenuItem(
-                title='Preferences...', key=',',
+                title=_('Preferences...'), key=',',
                 callback=lambda sender: self.window_preferences(sender),
             ),
             rumps.MenuItem(
-                title='About TransPad',
+                title=_('About TransPad'),
                 callback=lambda _: self.window_about(),
             ),
             rumps.separator,
@@ -41,7 +41,7 @@ class TransPadApp:
     @staticmethod
     def window_about():
         rumps.alert(
-            title='About TransPad',
+            title=_('About TransPad'),
             message='https://github.com/rexzhang/trans-pad',
             icon_path='icon.icns'
         )
@@ -62,8 +62,5 @@ class TransPadApp:
 
 
 def main():
-    logger.info('info!!!test,test,test,test,test,')
-    logger.debug('debug!!!test,test,test,test,test,')
-
     app = TransPadApp()
     app.run()
