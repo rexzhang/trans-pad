@@ -9,10 +9,17 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesController">
             <connections>
                 <outlet property="destLanguage" destination="976-gc-M0v" id="pVz-0B-m3i"/>
+                <outlet property="destLanguageLabel" destination="0Az-np-b9x" id="vPu-9e-jYH"/>
+                <outlet property="generalTitle" destination="Xc3-nV-qUd" id="91d-J8-7xi"/>
                 <outlet property="googleServiceURL" destination="SjL-eb-r6g" id="kfj-OM-TRN"/>
+                <outlet property="googleServiceURLLabel" destination="hZj-Ms-Uf6" id="cGd-G1-sFE"/>
                 <outlet property="sentryDsn" destination="Ebh-DW-PWm" id="OCb-10-mcN"/>
+                <outlet property="tabViewObjc" destination="Gov-pi-1kH" id="h7v-OR-R32"/>
                 <outlet property="translationService" destination="mkB-dp-EFS" id="Ml9-Cg-xjE"/>
+                <outlet property="translationServiceLabel" destination="eLE-iR-JGk" id="EpD-pO-MOD"/>
                 <outlet property="uiLanguage" destination="Iui-HG-4Iz" id="ubc-Fv-MrO"/>
+                <outlet property="uiLanguageLabel" destination="fIZ-FF-440" id="zD6-eW-7UC"/>
+                <outlet property="windowObjc" destination="QvC-M9-y7g" id="HKe-cD-seE"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

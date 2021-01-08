@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-08 01:07+0800\n"
-"PO-Revision-Date: 2021-01-08 01:09+0800\n"
+"POT-Creation-Date: 2021-01-08 18:52+0800\n"
+"PO-Revision-Date: 2021-01-08 18:53+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -34,10 +34,37 @@ msgstr "谷歌翻译"
 msgid "Google Translate API"
 msgstr "谷歌翻译 API"
 
-#: trans_pad/trans_pad.py:21
-msgid "Preferences..."
-msgstr "偏好设置..."
+#: trans_pad/trans_pad.py:21 trans_pad/ui/preferences.py:44
+msgid "Preferences"
+msgstr "偏好设置"
 
-#: trans_pad/trans_pad.py:25 trans_pad/trans_pad.py:44
+#: trans_pad/trans_pad.py:25 trans_pad/trans_pad.py:45
 msgid "About TransPad"
 msgstr "关于 TransPad"
+
+#: trans_pad/trans_pad.py:33
+msgid "Quit"
+msgstr "退出"
+
+#: trans_pad/ui/preferences.py:53
+msgid "General"
+msgstr "通用"
+
+#: trans_pad/ui/preferences.py:55
+msgid "UI Language"
+msgstr "界面语言"
+
+#: trans_pad/ui/preferences.py:62
+msgid "Destination Language"
+msgstr "目标语言"
+
+#: trans_pad/ui/preferences.py:69
+msgid "Translation Service"
+msgstr "翻译服务"
+
+#: trans_pad/ui/preferences.py:78
+msgid "Service URL"
+msgstr "服务器网址"
+
+#~ msgid "Quit TransPad"
+#~ msgstr "退出 TransPad"

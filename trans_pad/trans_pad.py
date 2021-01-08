@@ -18,7 +18,7 @@ class TransPadApp:
     def __init__(self):
         menu = [
             rumps.MenuItem(
-                title=_('Preferences...'), key=',',
+                title='{}...'.format(_('Preferences')), key=',',
                 callback=lambda sender: self.window_preferences(sender),
             ),
             rumps.MenuItem(
@@ -29,7 +29,8 @@ class TransPadApp:
         ]
 
         self.app = rumps.App(
-            APP_NAME, icon='icon.icns', template=True, menu=menu
+            APP_NAME, icon='icon.icns', template=True,
+            menu=menu, quit_button=_('Quit')
         )
 
         register_service('TransPadService')

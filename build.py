@@ -95,8 +95,8 @@ def cli_build_app():
     build_app_for_dev()
 
 
-@cli.command('all', help='Build ALL')
-def cli_build_all():
+@cli.command('dev', help='Build ALL for development')
+def cli_build_all_for_dev():
     build_gettext()
     build_app_for_dev()
 

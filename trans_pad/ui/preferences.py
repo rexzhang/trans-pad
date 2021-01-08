@@ -1,4 +1,4 @@
-from objc import IBOutlet, IBAction
+from objc import IBOutlet, IBAction, selectorFor
 from AppKit import NSWindowController, NSApp
 
 from trans_pad.constants import (
@@ -11,9 +11,17 @@ from trans_pad.translate.service import GOOGLE_SERVICE_URLS
 
 
 class PreferencesController(NSWindowController):
+    # window
+    windowObjc = IBOutlet()
+    tabViewObjc = IBOutlet()
+
     # General
+    generalTitle = IBOutlet()
+    uiLanguageLabel = IBOutlet()
     uiLanguage = IBOutlet()
+    destLanguageLabel = IBOutlet()
     destLanguage = IBOutlet()
+    translationServiceLabel = IBOutlet()
     translationService = IBOutlet()
 
     ui_language_helper = None
@@ -21,6 +29,7 @@ class PreferencesController(NSWindowController):
     translation_service_helper = None
 
     # Google
+    googleServiceURLLabel = IBOutlet()
     googleServiceURL = IBOutlet()
 
     google_service_url_helper = None
@@ -31,19 +40,32 @@ class PreferencesController(NSWindowController):
     def windowDidLoad(self):
         NSWindowController.windowDidLoad(self)
 
+        # window
+        self.windowObjc.setValue_forKey_(_('Preferences'), 'title')
+
+        # tab view
+        tab_view_objc = self.tabViewObjc.valueForKey_('tabViewItems')
+        print(tab_view_objc.objectAtIndex_(0).valueForKey_('label'))
+
         # General
+        tab_view_objc.objectAtIndex_(0).setValue_forKey_(
+            _('General'), 'label'
+        )
+        self.uiLanguageLabel.setStringValue_(_('UI Language'))
         self.ui_language_helper = PopUpButtonHelper(
             objc_obj=self.uiLanguage,
             values=Languages,
             selected_value=config.Common.ui_language,
             text_map=Languages.text_map(),
         )
+        self.destLanguageLabel.setStringValue_(_('Destination Language'))
         self.dest_language_helper = PopUpButtonHelper(
             objc_obj=self.destLanguage,
             values=Languages,
             selected_value=config.Common.dest_language,
             text_map=Languages.text_map(),
         )
+        self.translationServiceLabel.setStringValue_(_('Translation Service'))
         self.translation_service_helper = PopUpButtonHelper(
             objc_obj=self.translationService,
             values=TranslationServices,
@@ -52,6 +74,7 @@ class PreferencesController(NSWindowController):
         )
 
         # Google
+        self.googleServiceURLLabel.setStringValue_(_('Service URL'))
         self.google_service_url_helper = PopUpButtonHelper(
             objc_obj=self.googleServiceURL,
             values=GOOGLE_SERVICE_URLS,

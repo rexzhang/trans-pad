@@ -15,7 +15,7 @@
 ### Build
 
 ```shell
-python build.py all
+python build.py dev
 ```
 
 ### Run it
