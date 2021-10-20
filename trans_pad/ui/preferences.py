@@ -42,10 +42,8 @@ class PreferencesController(NSWindowController):
 
         # window
         self.windowObjc.setValue_forKey_(_('Preferences'), 'title')
-
         # tab view
         tab_view_objc = self.tabViewObjc.valueForKey_('tabViewItems')
-        print(tab_view_objc.objectAtIndex_(0).valueForKey_('label'))
 
         # General
         tab_view_objc.objectAtIndex_(0).setValue_forKey_(

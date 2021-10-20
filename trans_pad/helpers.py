@@ -1,6 +1,5 @@
 import gettext
 import logging
-from pathlib import Path
 from enum import Enum, EnumMeta
 from typing import Optional, Union
 
@@ -9,8 +8,13 @@ from Cocoa import (
     NSUserDefaults,
 )
 
+
 from trans_pad.constants import Languages
+from trans_pad.path import get_path_for_i18n
 from trans_pad.config import config
+
+
+logger = logging.getLogger(__file__)
 
 
 def i18n():
@@ -19,16 +23,12 @@ def i18n():
     else:
         ui_language = config.Common.ui_language
 
-    path = Path(__file__).parent.parent
-    if path.name == 'python38.zip':
-        # in app Bundle
-        path = path.parent.parent
-
+    logger.info(get_path_for_i18n())
     lang = gettext.translation(
-        'TransPad',
-        localedir=path.joinpath('po'),
+        "TransPad",
+        localedir=get_path_for_i18n(),
         languages=[ui_language.value],
-        fallback=True
+        fallback=True,
     )
     lang.install()
 
@@ -42,9 +42,7 @@ class MacOSInfo:
             self._ns_user_defaults = NSUserDefaults.standardUserDefaults()
 
         try:
-            lang = Languages(
-                self._ns_user_defaults.stringForKey_('AppleLocale')
-            )
+            lang = Languages(self._ns_user_defaults.stringForKey_("AppleLocale"))
         except ValueError:
             # TODO logging
             lang = Languages.fallback_language()
@@ -69,9 +67,11 @@ class PopUpButtonHelper:
     _values = None
 
     def __init__(
-        self, objc_obj,
-        values: Union[EnumMeta, dict, list, tuple], selected_value: any,
-        text_map: Optional[dict] = None
+        self,
+        objc_obj,
+        values: Union[EnumMeta, dict, list, tuple],
+        selected_value: any,
+        text_map: Optional[dict] = None,
     ):
         self._objc = objc_obj
         self._objc.removeAllItems()
@@ -93,8 +93,11 @@ class PopUpButtonHelper:
             )
         else:
             raise Exception(
-                'class PopUpButtonHelper()',
-                type(values), values, type(selected_value), selected_value
+                "class PopUpButtonHelper()",
+                type(values),
+                values,
+                type(selected_value),
+                selected_value,
             )
 
         return
@@ -103,9 +106,7 @@ class PopUpButtonHelper:
         self, values: EnumMeta, selected_value: Enum, text_map: Optional[dict]
     ) -> None:
         index = 0
-        if text_map and isinstance(
-            list(text_map.keys())[0], type(selected_value)
-        ):
+        if text_map and isinstance(list(text_map.keys())[0], type(selected_value)):
             text_map_key_type_is_enum = True
         else:
             text_map_key_type_is_enum = False
@@ -119,8 +120,7 @@ class PopUpButtonHelper:
                     title = text_map[value.value]
 
             self._append_pop_up_button_item(
-                value=value, title=title, index=index,
-                selected_value=selected_value
+                value=value, title=title, index=index, selected_value=selected_value
             )
             index += 1
 
@@ -137,16 +137,14 @@ class PopUpButtonHelper:
                 title = text_map[value]
 
             self._append_pop_up_button_item(
-                value=value, title=title, index=index,
-                selected_value=selected_value
+                value=value, title=title, index=index, selected_value=selected_value
             )
             index += 1
 
         return
 
     def _init_from_list(
-        self, values: Union[list, tuple],
-        selected_value: any, text_map: Optional[dict]
+        self, values: Union[list, tuple], selected_value: any, text_map: Optional[dict]
     ) -> None:
         index = 0
         for value in values:
@@ -156,8 +154,7 @@ class PopUpButtonHelper:
                 title = text_map[value]
 
             self._append_pop_up_button_item(
-                value=value, title=title, index=index,
-                selected_value=selected_value
+                value=value, title=title, index=index, selected_value=selected_value
             )
             index += 1
 
