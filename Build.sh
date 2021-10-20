@@ -3,7 +3,7 @@ pip install -U pip wheel
 pip install -U -r requirements.txt
 
 python build.py gettext
-python setup.py py2app
+python setup.py py2app --no-strip
 
 python build.py popclip
 
