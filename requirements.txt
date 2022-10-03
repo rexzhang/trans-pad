@@ -1,6 +1,7 @@
-rumps
+git+https://github.com/jaredks/rumps@master  # rumps
 TreeStructConfig
-googletrans==4.0.0rc1
+#googletrans==4.0.0rc1
+googletrans-py # py3.10
 
 pyobjc-framework-Cocoa
 pyobjc-framework-CoreServices

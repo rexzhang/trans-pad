@@ -15,7 +15,6 @@ def get_path_for_file_config() -> Path:
 
 def get_path_for_i18n() -> Path:
     path = Path(__file__).parent.parent
-    # if path.name == 'python38.zip':
     if path.name.startswith("python3."):
         # in app Bundle
         path = path.parent.parent
