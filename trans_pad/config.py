@@ -25,7 +25,7 @@ class Config(Root):
         sentry_dsn: str = ""
 
     class Google(Branch):
-        service_url: str = "translate.google.cn"
+        service_url: str = "translate.google.com"
 
 
 config = Config(file=get_path_for_file_config())
